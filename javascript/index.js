@@ -22,36 +22,37 @@ const firebaseConfig = {
   appId: "1:471802299941:web:d5631ff6b76b921c1f61cc"
 };
 
-const app  = initializeApp(firebaseConfig);
-const db   = getFirestore(app);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 const auth = getAuth(app);
 
 let cartQuantity = 0;
-let currentUser  = null;
+let currentUser = null;
 
 // index.html is the shop landing page — guests can browse; only guard cart actions
 onAuthStateChanged(auth, (user) => {
   currentUser = user || null;
-  const signOutLink = document.getElementById("signOutLink");
-  const signInLink  = document.getElementById("signInLink");
-
+  // const signOutLink = document.getElementById("signOutLink");
+  // const signInLink  = document.getElementById("signInLink");
+  const signOutLink = document.getElementById("signOutBtn");
+  const signInLink = document.getElementById("signInLink");
   if (user) {
     loadCartCount();
     if (signOutLink) signOutLink.style.display = "inline";
-    if (signInLink)  signInLink.style.display  = "none";
+    if (signInLink) signInLink.style.display = "none";
   } else {
     updateCartUI();
     if (signOutLink) signOutLink.style.display = "none";
-    if (signInLink)  signInLink.style.display  = "inline";
+    if (signInLink) signInLink.style.display = "inline";
   }
 });
 
 async function loadCartCount() {
   if (!currentUser) return;
   try {
-    const q        = query(collection(db, "carts"), where("uid", "==", currentUser.uid));
+    const q = query(collection(db, "carts"), where("uid", "==", currentUser.uid));
     const snapshot = await getDocs(q);
-    cartQuantity   = snapshot.size;
+    cartQuantity = snapshot.size;
     updateCartUI();
   } catch (err) {
     console.error("Failed to load cart:", err);
@@ -93,9 +94,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     card.addEventListener("click", (e) => {
       if (e.target.closest(".buy-btn")) return;
-      const name  = card.querySelector("h3")?.innerText.trim()    || "";
+      const name = card.querySelector("h3")?.innerText.trim() || "";
       const price = card.querySelector(".price")?.innerText.trim() || "";
-      const image = card.querySelector("img")?.src                 || "";
+      const image = card.querySelector("img")?.src || "";
       goToProductDetails(name, price, image);
     });
 
@@ -104,9 +105,9 @@ document.addEventListener("DOMContentLoaded", () => {
       buyBtn.removeAttribute("onclick");
       buyBtn.addEventListener("click", (e) => {
         e.stopPropagation();
-        const name  = card.querySelector("h3")?.innerText.trim()    || "";
+        const name = card.querySelector("h3")?.innerText.trim() || "";
         const price = card.querySelector(".price")?.innerText.trim() || "";
-        const image = card.querySelector("img")?.src                 || "";
+        const image = card.querySelector("img")?.src || "";
         addToCart(name, price, image);
       });
     }
@@ -131,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Hamburger
   const toggle = document.getElementById("menuToggle");
-  const nav    = document.getElementById("navMenu");
+  const nav = document.getElementById("navMenu");
   if (toggle && nav) toggle.addEventListener("click", () => nav.classList.toggle("active"));
 
   // Sign-out

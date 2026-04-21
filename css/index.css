@@ -43,7 +43,7 @@ body {
   color: #ff69b4;
 }
 
-#signOutBtn {
+#signOutBtn, #signInLink {
   background: none;
   border: none;
   color: #ff69b4;
@@ -52,7 +52,8 @@ body {
   transition: 0.3s;
 }
 
-#signOutBtn:hover {
+
+#signOutBtn:hover, #signInLink:hover {
   background: #d63384;
   color: white;
   border-radius: 20px;
