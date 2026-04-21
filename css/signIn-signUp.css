@@ -1,0 +1,85 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial;
+}
+
+body{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+   background: #fff0f5;
+  /* background: pink; */
+  /* background:#ffe6ef; */
+}
+
+.auth-box{
+   background: pink;
+  /* background:white; */
+  padding:60px 50px;
+  border-radius:20px;
+  width:420px;
+  text-align:center;
+  box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.auth-box h2{
+  margin-bottom:20px;
+}
+
+.auth-box input{
+  width:100%;
+  padding:14px;
+  margin:10px 0;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-size:15px;
+}
+
+.auth-box button{
+  width:100%;
+  padding:14px;
+  border:none;
+  color:black;
+  border-radius:10px;
+  font-size:16px;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+#emailSignupBtn{
+   background: #fff0f5;
+  /* background:pink; */
+}
+
+#googleSignupBtn{
+   background: #fff0f5;
+  /* background:pink; */
+}
+
+.auth-box p{
+  margin-top:15px;
+}
+
+.auth-box a{
+  color:palevioletred;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+
+@media(max-width:768px){
+  .auth-box{
+    width:90%;
+    padding:40px 25px;
+  }
+}
+
+@media(max-width:480px){
+  .auth-box{
+    width:95%;
+    padding:30px 20px;
+  }
+} 
